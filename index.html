@@ -1,83 +1,251 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.6">
-  <style type="text/css">
-    body {background-color: #f1f1f7}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.2px '.SF NS'; color: #e12c4e; -webkit-text-stroke: #e12c4e}
-    p.p3 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #262626; -webkit-text-stroke: #262626}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #12182f; -webkit-text-stroke: #12182f}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.6px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.6px '.Apple Color Emoji UI'; color: #141322; -webkit-text-stroke: #141322}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #12182f; -webkit-text-stroke: #12182f}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.4px 'Helvetica Neue'; color: #434343; -webkit-text-stroke: #434343}
-    li.li6 {margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #262626; -webkit-text-stroke: #262626}
-    span.s1 {font-kerning: none; background-color: #ffffff}
-    span.s2 {background-color: #ffffff; -webkit-text-stroke: 0px #000000}
-    span.s3 {font-kerning: none; background-color: #12182f}
-    span.s4 {font: 12.0px 'Helvetica Neue'; font-kerning: none; color: #141322; background-color: #ffffff; -webkit-text-stroke: 0px #141322}
-    span.s5 {font-kerning: none; background-color: #e12c4e}
-    ul.ul1 {list-style-type: disc}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controller Junior - Oferta Laboral</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #1a1a2e;
+      background: #f4f4f9;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #16213e;
+      margin-bottom: .25rem;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: #e94560;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #e94560;
+    }
+    h2 {
+      font-size: 1.25rem;
+      color: #16213e;
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.1em;
+      background: #e94560;
+      border-radius: 2px;
+    }
+    h3 {
+      font-size: 1rem;
+      color: #0f3460;
+      margin: 1.25rem 0 .5rem;
+    }
+    p {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: .5rem;
+      color: #333;
+    }
+    ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #e94560;
+      font-weight: 700;
+    }
+    ul ul {
+      margin-top: .25rem;
+    }
+    ul ul li {
+      padding-left: 1.25rem;
+    }
+    ul ul li::before {
+      content: '–';
+      color: #888;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .tag {
+      display: inline-block;
+      background: #16213e;
+      color: #fff;
+      font-size: .8rem;
+      padding: .2rem .65rem;
+      border-radius: 20px;
+      margin: .2rem .25rem .2rem 0;
+    }
+    .tag-alt {
+      background: #e94560;
+    }
+    .offer-item {
+      display: flex;
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+    .offer-item .icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .offer-item strong {
+      display: block;
+      color: #16213e;
+    }
+    .offer-item span {
+      color: #555;
+      font-size: .95rem;
+    }
+    @media (max-width: 600px) {
+      .card { padding: 1.5rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-<h1 style="margin: 0.0px 0.0px 3.0px 0.0px; font: 24.0px 'Helvetica Neue'; color: #12182f; -webkit-text-stroke: #12182f"><span class="s1"><b>Controller Junior</b><b></b></span></h1>
-<p class="p2"><span class="s1"><b>Resumen del Puesto</b><b></b></span></p>
-<p class="p3"><span class="s1">Buscamos un Controller Junior analítico, organizado y proactivo para unirse a nuestro equipo. El candidato ideal será responsable de garantizar la salud financiera de la empresa mediante el control riguroso de costes, la gestión eficiente de proveedores y la elaboración de informes que permitan a la dirección tomar decisiones estratégicas basadas en datos reales.</span></p>
-<p class="p3"><span class="s1">Es una posición clave para quien busca ganar experiencia integral en el ciclo financiero de una empresa en expansión con múltiples puntos de venta.</span></p>
-<p class="p4"><span class="s1"><b>Responsabilidades Principales</b><b></b></span></p>
-<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0e264d; -webkit-text-stroke: #0e264d"><span class="s1"><b>1. Gestión de Tesorería y Proveedores</b><b></b></span></h3>
-<ul class="ul1">
-  <li class="li6"><span class="s2"></span><span class="s1">Gestión integral del ciclo de compras: interlocución con proveedores, negociación de condiciones de pago y seguimiento de pedidos.</span></li>
-  <li class="li6"><span class="s2"></span><span class="s1">Revisión, validación y contabilización de facturas, asegurando la conformidad con los presupuestos asignados.</span></li>
-  <li class="li6"><span class="s2"></span><span class="s1">Ejecución de pagos y seguimiento de vencimientos para mantener la liquidez y las buenas relaciones comerciales.</span></li>
-</ul>
-<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0e264d; -webkit-text-stroke: #0e264d"><span class="s1"><b>2. Control de Gestión y Reporting</b><b></b></span></h3>
-<ul class="ul1">
-  <li class="li6"><span class="s2"></span><span class="s1">Elaboración y actualización semanal/mensual de reportes de rendimiento financiero para cada punto de venta.</span></li>
-  <li class="li6"><span class="s2"></span><span class="s1">Análisis de desviaciones: comparación de gastos reales vs. presupuestados (Budget vs. Actuals).</span></li>
-  <li class="li6"><span class="s2"></span><span class="s1">Monitoreo de KPIs financieros básicos (márgenes, costes operativos y rentabilidad por unidad de negocio).</span></li>
-</ul>
-<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0e264d; -webkit-text-stroke: #0e264d"><span class="s1"><b>3. Soporte a la Dirección</b><b></b></span></h3>
-<ul class="ul1">
-  <li class="li6"><span class="s2"></span><span class="s1">Apoyo en el cierre mensual contable y en la preparación de estados financieros básicos.</span></li>
-  <li class="li6"><span class="s2"></span><span class="s1">Identificación de oportunidades de optimización de costes y mejora de procesos administrativos.</span></li>
-  <li class="li6"><span class="s2"></span><span class="s1">Mantenimiento de los registros financieros actualizados en el sistema de gestión (ERP).</span></li>
-</ul>
-<p class="p4"><span class="s1"><b>Requisitos del Perfil</b><b></b></span></p>
-<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0e264d; -webkit-text-stroke: #0e264d"><span class="s1"><b>Formación</b><b></b></span></h3>
-<ul class="ul1">
-  <li class="li6"><span class="s2"></span><span class="s1">Grado en ADE, Economía, Finanzas o Contabilidad.</span></li>
-</ul>
-<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0e264d; -webkit-text-stroke: #0e264d"><span class="s1"><b>Experiencia</b><b></b></span></h3>
-<ul class="ul1">
-  <li class="li6"><span class="s2"></span><span class="s1">1-2 años en administración, contabilidad o control de gestión (se valorarán prácticas profesionales).</span></li>
-</ul>
-<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0e264d; -webkit-text-stroke: #0e264d"><span class="s1"><b>Habilidades Técnicas</b><b></b></span></h3>
-<ul class="ul1">
-  <li class="li6"><span class="s2"></span><span class="s1">Nivel avanzado de Excel (tablas dinámicas, búsqueda V, fórmulas financieras).</span></li>
-  <li class="li6"><span class="s2"></span><span class="s1">Conocimiento de herramientas de gestión/contabilidad.</span></li>
-</ul>
-<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0e264d; -webkit-text-stroke: #0e264d"><span class="s1"><b>Competencias Personales</b><b></b></span></h3>
-<ul class="ul1">
-  <li class="li6"><span class="s2"></span><span class="s1">Alta capacidad de atención al detalle y rigor en los números.</span></li>
-  <li class="li6"><span class="s2"></span><span class="s1">Habilidad para la comunicación asertiva con proveedores.</span></li>
-  <li class="li6"><span class="s2"></span><span class="s1">Autonomía y capacidad para organizar tareas bajo plazos definidos.</span></li>
-</ul>
-<p class="p7"><span class="s3">ADE</span><span class="s4"> </span><span class="s3">Economía</span><span class="s4"> </span><span class="s3">Finanzas</span><span class="s4"> </span><span class="s3">Contabilidad</span><span class="s4"> </span><span class="s5">Excel Avanzado</span><span class="s4"> </span><span class="s5">ERP</span></p>
-<p class="p4"><span class="s1"><b>¿Qué ofrecemos a los candidatos?</b><b></b></span></p>
-<p class="p8"><span class="s1">📈</span></p>
-<p class="p9"><span class="s1"><b>Entorno de crecimiento</b><b></b></span></p>
-<p class="p10"><span class="s1">Oportunidad de participar directamente en la estrategia financiera de la empresa y ver el impacto real de tu trabajo.</span></p>
-<p class="p8"><span class="s1">🎓</span></p>
-<p class="p9"><span class="s1"><b>Formación continua</b><b></b></span></p>
-<p class="p10"><span class="s1">Mentoría directa en gestión financiera y operativa.</span></p>
-<p class="p8"><span class="s1">🏢</span></p>
-<p class="p9"><span class="s1"><b>Estabilidad</b><b></b></span></p>
-<p class="p10"><span class="s1">Proyecto empresarial consolidado con ambición de crecimiento.</span></p>
+<div class="container">
+
+  <div class="card">
+    <h1>Controller Junior</h1>
+    <div class="subtitle">Resumen del Puesto</div>
+    <p>
+      Buscamos un Controller Junior analítico, organizado y proactivo para unirse a nuestro equipo.
+      El candidato ideal será responsable de garantizar la salud financiera de la empresa mediante el
+      control riguroso de costes, la gestión eficiente de proveedores y la elaboración de informes
+      que permitan a la dirección tomar decisiones estratégicas basadas en datos reales.
+    </p>
+    <p>
+      Es una posición clave para quien busca ganar experiencia integral en el ciclo financiero de
+      una pequeña empresa con múltiples puntos de venta.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Responsabilidades Principales</h2>
+
+    <h3>1. Gestión de Tesorería y Proveedores</h3>
+    <ul>
+      <li>Gestión integral del ciclo de compras: interlocución con proveedores, negociación de condiciones de pago y seguimiento de pedidos.</li>
+      <li>Revisión, validación y contabilización de facturas, asegurando la conformidad con los presupuestos asignados.</li>
+      <li>Ejecución de pagos y seguimiento de vencimientos para mantener la liquidez y las buenas relaciones comerciales.</li>
+    </ul>
+
+    <h3>2. Control de Gestión y Reporting</h3>
+    <ul>
+      <li>Elaboración y actualización semanal/mensual de reportes de rendimiento financiero para cada punto de venta.</li>
+      <li>Análisis de desviaciones: comparación de gastos reales vs. presupuestados (Budget vs. Actuals).</li>
+      <li>Monitoreo de KPIs financieros básicos (márgenes, costes operativos y rentabilidad por unidad de negocio).</li>
+    </ul>
+
+    <h3>3. Soporte a la Dirección</h3>
+    <ul>
+      <li>Apoyo en el cierre mensual contable y en la preparación de estados financieros básicos.</li>
+      <li>Identificación de oportunidades de optimización de costes y mejora de procesos administrativos.</li>
+      <li>Mantenimiento de los registros financieros actualizados en el sistema de gestión (ERP).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Requisitos del Perfil</h2>
+
+    <div class="grid-2">
+      <div>
+        <h3>Formación</h3>
+        <ul>
+          <li>Grado en ADE, Economía, Finanzas o Contabilidad.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Experiencia</h3>
+        <ul>
+          <li>1-2 años en administración, contabilidad o control de gestión (se valorarán prácticas profesionales).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Habilidades Técnicas</h3>
+    <ul>
+      <li>Nivel avanzado de Excel (tablas dinámicas, búsqueda V, fórmulas financieras).</li>
+      <li>Conocimiento de herramientas de gestión/contabilidad.</li>
+    </ul>
+
+    <h3>Competencias Personales</h3>
+    <ul>
+      <li>Alta capacidad de atención al detalle y rigor en los números.</li>
+      <li>Habilidad para la comunicación asertiva con proveedores.</li>
+      <li>Autonomía y capacidad para organizar tareas bajo plazos definidos.</li>
+    </ul>
+
+    <div style="margin-top: 1rem;">
+      <span class="tag">ADE</span>
+      <span class="tag">Economía</span>
+      <span class="tag">Finanzas</span>
+      <span class="tag">Contabilidad</span>
+      <span class="tag tag-alt">Excel Avanzado</span>
+      <span class="tag tag-alt">ERP</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>¿Qué ofrecemos a los candidatos?</h2>
+
+    <div class="offer-item">
+      <div class="icon">📈</div>
+      <div>
+        <strong>Entorno de crecimiento</strong>
+        <span>Oportunidad de participar directamente en la estrategia financiera de la empresa y ver el impacto real de tu trabajo.</span>
+      </div>
+    </div>
+
+    <div class="offer-item">
+      <div class="icon">🎓</div>
+      <div>
+        <strong>Formación continua</strong>
+        <span>Mentoría directa en gestión financiera y operativa.</span>
+      </div>
+    </div>
+
+    <div class="offer-item">
+      <div class="icon">🏢</div>
+      <div>
+        <strong>Estabilidad</strong>
+        <span>Proyecto empresarial consolidado con ambición de crecimiento.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
